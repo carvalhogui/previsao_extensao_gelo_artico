@@ -1,7 +1,7 @@
 # Extensão de gelo no oceano ártico
 Esse algoritmo usa redes neurais recorrentes para a previsão da extensão de gelo no oceano ártico. 
 Os dados utilizados são disponibilizados no site https://nsidc.org/. 
-O propósito do projeto é treinar habilidades no campo de machine learning. 
+O propósito do projeto é treinar habilidades no campo de machine learning. Uma inspiração para esse projeto foi a gráfico interativo presente no site https://nsidc.org/arcticseaicenews/charctic-interactive-sea-ice-graph/, além do tema ser relevante no contexto das mudanças climáticas. 
 
 # Como funciona o projeto
 No arquivo ftpdata.py é utilizado o protocolo ftp para extrair os arquivos necessários para a análise. É necessário alterar as variáveis "destdir" e "password" para realizar o download dos dados via FTP.
