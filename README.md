@@ -13,6 +13,7 @@ Foi utilizada a classe EarlyStopping para parar o treinamento quando o mesmo nã
 Foram utilizadas quatro camadas mais a camada de saída na construção da rede neural, a função de ativação foi a "sigmoid" e a lossFunction utilizada foi a "mean_squared_error".
 
 O arquivo "oceano_artico.py" apenas mostra em um gráfico a média anual da extensão de gelo no ártico, mostrando um declínio acentuado ao longo dos últimos anos. 
+
 ![media_anual](https://user-images.githubusercontent.com/54844874/171720233-eaf38e26-602c-4615-9097-b06fb32a0767.png)
 
 
