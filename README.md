@@ -14,7 +14,9 @@ Foram utilizadas quatro camadas mais a camada de saída na construção da rede 
 
 # Testes efetuados
 Em um teste para o tempo de 90 dias foram obtidos os seguintes resultados:
+
 Valor médio da previsão: 13.9089155
+
 Valor médio real: 13.867099999999997
 
 ![Previsão_extensão_artico_90dias](https://user-images.githubusercontent.com/54844874/171716675-ba0c0fd9-b4ce-49b8-b45d-909d0ba5efcf.png)
