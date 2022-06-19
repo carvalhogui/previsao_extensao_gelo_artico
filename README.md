@@ -1,9 +1,10 @@
 # Extensão de gelo no oceano ártico
+Projeto iniciado a partir do curso de Deep Learning, do professor Jones Granatyr, na UDEMY. 
 Esse algoritmo usa redes neurais recorrentes para a previsão da extensão de gelo no oceano ártico. 
 Os dados utilizados são disponibilizados no site https://nsidc.org/. 
 O propósito do projeto é treinar habilidades no campo de machine learning. Uma inspiração para esse projeto foi a gráfico interativo presente no site https://nsidc.org/arcticseaicenews/charctic-interactive-sea-ice-graph/, além do tema ser relevante no contexto das mudanças climáticas. 
 
-# Como funciona o projeto
+# Como funciona o algoritmo
 No arquivo ftpdata.py é utilizado o protocolo ftp para extrair os arquivos necessários para a análise. É necessário alterar as variáveis "destdir" e "password" para realizar o download dos dados via FTP.
 Será feito o download de três arquivos, apenas o arquivo "N_seaice_extent_daily_v3.0.csv" será utilizado. 
 No arquivo "previsao_artico_um_previsor.py" é realizado o pré-processamento dos dados, eliminando dados desnecessários para o projeto.
