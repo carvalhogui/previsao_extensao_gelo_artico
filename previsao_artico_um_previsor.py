@@ -12,18 +12,18 @@ Qtd_dias_previsao = 90
 base = pd.read_csv('N_seaice_extent_daily_v3.0.csv')
 base = base.iloc[1:, :]
 
-# Utilizar dados a partir de 1988, já que os dados foram atualizados de forma diária
-# apenas a partir de 1988.
-
+# Utilizar dados a partir de 1988, já que os dados foram atualizados de forma diária apenas a partir de 1988.
 base = base.drop(base[base['Year'].astype(int) < 1988].index)
 base = base.dropna()
 
+# Separação dos dados de treinamento e teste, baseado na quantidade de dias desejados para a previsão.
 base_teste = base.iloc[-Qtd_dias_previsao:, :]
 base_teste = base_teste.iloc[:, 3:4].values
 
 base_treinamento = base.iloc[:-Qtd_dias_previsao, :]
 base_treinamento = base_treinamento.iloc[:, 3:4].values
 
+# Limitar os valores dos dados entre 0 e 1 para o processamento da Rede Neural.
 normalizador = MinMaxScaler(feature_range=(0,1))
 base_treinamento_normalizada = normalizador.fit_transform(base_treinamento)
 
@@ -35,6 +35,8 @@ for i in range(Qtd_dias_previsao, len(base_treinamento)):
 previsores, extensao_real = np.array(previsores), np.array(extensao_real)
 previsores = np.reshape(previsores, (previsores.shape[0], previsores.shape[1], 1))
 
+
+# Construção da Rede Neural
 regressor = Sequential()
 regressor.add(LSTM(units = 100, return_sequences = True, input_shape = (previsores.shape[1], 1)))
 regressor.add(Dropout(0.3))
@@ -56,6 +58,7 @@ regressor.compile(optimizer = 'adam', loss = 'mean_squared_error',
 es = EarlyStopping(monitor = 'loss', min_delta = 1e-10, patience = 7, verbose = 1)
 rlr = ReduceLROnPlateau(monitor = 'loss', factor = 0.2, patience = 5, verbose = 1)
 
+# Treinamento da Rede Neural.
 regressor.fit(previsores, extensao_real, epochs = 70, batch_size = 25,
               callbacks = [es, rlr])
 
@@ -65,7 +68,7 @@ entradas = base_completa[len(base_completa) - len(base_teste) - Qtd_dias_previsa
 entradas = entradas.to_numpy().reshape(-1, 1)
 entradas = normalizador.transform(entradas)
 
-
+# Base de teste para a validação e confirmação dos dados. 
 X_teste = []
 for i in range(Qtd_dias_previsao, len(entradas)):
     X_teste.append(entradas[i-Qtd_dias_previsao:i, 0])
